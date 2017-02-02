@@ -70,6 +70,12 @@
     <dependency>
       <groupId>org.apache.felix</groupId>
       <artifactId>org.apache.felix.gogo.command</artifactId>
+      <exclusions>
+        <exclusion>
+          <groupId>org.easymock</groupId>
+          <artifactId>easymock</artifactId>
+        </exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>org.apache.felix</groupId>
