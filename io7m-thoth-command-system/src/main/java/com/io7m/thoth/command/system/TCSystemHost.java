@@ -17,6 +17,7 @@
 package com.io7m.thoth.command.system;
 
 import com.io7m.thoth.command.api.ThothCommandType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.service.component.annotations.Component;
 
@@ -46,18 +47,18 @@ public final class TCSystemHost extends TCSystemCommand
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
     final OperatingSystemMXBean os =
       ManagementFactory.getOperatingSystemMXBean();
 
-    return List.of(String.format(
+    return List.of(ThothResponse.of(String.format(
       "%s %s %s, %d cores, load average %f",
       os.getName(),
       os.getArch(),
       os.getVersion(),
       Integer.valueOf(os.getAvailableProcessors()),
-      Double.valueOf(os.getSystemLoadAverage())));
+      Double.valueOf(os.getSystemLoadAverage()))));
   }
 }

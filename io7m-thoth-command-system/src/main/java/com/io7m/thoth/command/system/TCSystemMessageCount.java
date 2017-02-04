@@ -18,6 +18,7 @@ package com.io7m.thoth.command.system;
 
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothListenerType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
@@ -61,7 +62,7 @@ public final class TCSystemMessageCount extends TCSystemListener implements
   }
 
   @Override
-  public List<String> receive(
+  public List<ThothResponse> receive(
     final String text)
   {
     this.count = this.count.add(BigInteger.ONE);
@@ -69,9 +70,9 @@ public final class TCSystemMessageCount extends TCSystemListener implements
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
-    return List.of(this.count.toString());
+    return List.of(ThothResponse.of(this.count.toString()));
   }
 }

@@ -17,6 +17,7 @@
 package com.io7m.thoth.command.judges;
 
 import com.io7m.thoth.command.api.ThothCommandType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.service.component.annotations.Component;
 
@@ -45,19 +46,18 @@ public final class TCJudgesScore extends TCJudgesCommand
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
     final double judge0 = 10.0 - (Math.random() * 5.0);
     final double judge1 = 10.0 - (Math.random() * 5.0);
     final double judge2 = 10.0 - (Math.random() * 5.0);
     final double judge3 = (Math.random() * 10.0) * Math.random();
-
-    return List.of(String.format(
+    return List.of(ThothResponse.of(String.format(
       ".o/[%.1f] .o/[%.1f] .o/[%.1f] .o/[%.1f]",
       Double.valueOf(judge0),
       Double.valueOf(judge1),
       Double.valueOf(judge2),
-      Double.valueOf(judge3)));
+      Double.valueOf(judge3))));
   }
 }

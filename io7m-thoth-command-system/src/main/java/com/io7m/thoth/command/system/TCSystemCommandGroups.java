@@ -19,6 +19,7 @@ package com.io7m.thoth.command.system;
 import com.io7m.jnull.NullCheck;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResolverType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
@@ -61,9 +62,9 @@ public final class TCSystemCommandGroups extends TCSystemCommand
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
-    return this.resolver.commandGroups().toList();
+    return this.resolver.commandGroups().toList().map(ThothResponse::of);
   }
 }

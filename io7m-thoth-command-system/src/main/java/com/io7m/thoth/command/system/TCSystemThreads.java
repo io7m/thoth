@@ -17,6 +17,7 @@
 package com.io7m.thoth.command.system;
 
 import com.io7m.thoth.command.api.ThothCommandType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.HashSet;
 import javaslang.collection.List;
 import javaslang.collection.SortedMap;
@@ -48,10 +49,10 @@ public final class TCSystemThreads extends TCSystemCommand
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
-    List<String> results = List.empty();
+    List<ThothResponse> results = List.empty();
 
     final Set<Thread> threads = Thread.getAllStackTraces().keySet();
     final SortedMap<Long, Thread> by_id =
@@ -61,8 +62,8 @@ public final class TCSystemThreads extends TCSystemCommand
 
     for (final Long id : by_id.keySet()) {
       final Thread thread = by_id.get(id).get();
-      results = results.append(String.format(
-        "%-4d %-32s %-8s", id, thread.getName().trim(), thread.getState()));
+      results = results.append(ThothResponse.of(String.format(
+        "%-4d %-32s %-8s", id, thread.getName().trim(), thread.getState())));
     }
     return results;
   }

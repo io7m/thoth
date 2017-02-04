@@ -16,36 +16,21 @@
 
 package com.io7m.thoth.command.api;
 
-import javaslang.collection.List;
+import com.io7m.thoth.core.ThothImmutableStyleType;
+import org.immutables.value.Value;
 
 /**
- * <p>A listener.</p>
- *
- * <p>A listener is a passive observer of messages, regardless of whether they
- * were addressed to the bot or not.</p>
+ * The type of responses to messages.
  */
 
-public interface ThothListenerType
+@Value.Immutable
+@ThothImmutableStyleType
+public interface ThothResponseType
 {
   /**
-   * @return The listener group, for namespacing purposes
+   * @return The message text
    */
 
-  String group();
-
-  /**
-   * @return The listener name, for namespacing purposes
-   */
-
-  String name();
-
-  /**
-   * Receive a message.
-   *
-   * @param text The message text
-   *
-   * @return A list of messages with which to respond
-   */
-
-  List<ThothResponse> receive(String text);
+  @Value.Parameter
+  String text();
 }

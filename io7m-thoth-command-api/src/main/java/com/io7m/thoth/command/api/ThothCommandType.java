@@ -49,5 +49,5 @@ public interface ThothCommandType
    * @return A list of messages with which to respond
    */
 
-  List<String> execute(List<String> text);
+  List<ThothResponse> execute(List<String> text);
 }

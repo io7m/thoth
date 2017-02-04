@@ -18,6 +18,7 @@ package com.io7m.thoth.command.system;
 
 import com.io7m.junreachable.UnreachableCodeException;
 import com.io7m.thoth.command.api.ThothCommandType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
@@ -84,21 +85,21 @@ public final class TCSystemBundles extends TCSystemCommand
 
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
-    List<String> results = List.empty();
+    List<ThothResponse> results = List.empty();
 
     final Bundle[] bundles = this.bundle_context.getBundles();
     for (int index = 0; index < bundles.length; ++index) {
       final Bundle bundle = bundles[index];
       if (bundle.getSymbolicName() != null) {
-        results = results.append(String.format(
+        results = results.append(ThothResponse.of(String.format(
           "%-4d %-48s %-16s %-8s",
           Long.valueOf(bundle.getBundleId()),
           bundle.getSymbolicName(),
           bundle.getVersion(),
-          state(bundle)));
+          state(bundle))));
       }
     }
 

@@ -17,6 +17,7 @@
 package com.io7m.thoth.command.system;
 
 import com.io7m.thoth.command.api.ThothCommandType;
+import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
 import org.osgi.service.component.annotations.Component;
 
@@ -46,10 +47,11 @@ public final class TCSystemUptime extends TCSystemCommand
   }
 
   @Override
-  public List<String> execute(
+  public List<ThothResponse> execute(
     final List<String> text)
   {
-    return List.of(uptime(ManagementFactory.getRuntimeMXBean().getUptime()));
+    return List.of(ThothResponse.of(
+      uptime(ManagementFactory.getRuntimeMXBean().getUptime())));
   }
 
   private static String uptime(
