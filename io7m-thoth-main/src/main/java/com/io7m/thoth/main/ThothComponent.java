@@ -23,6 +23,7 @@ import com.io7m.thoth.connection.ThothIRCConnectionConfiguration;
 import com.io7m.thoth.connection.ThothIRCConnectionType;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
+import org.osgi.service.component.annotations.ConfigurationPolicy;
 import org.osgi.service.component.annotations.Deactivate;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;
@@ -37,13 +38,16 @@ import java.util.concurrent.atomic.AtomicReference;
  * The main IRC bot component.
  */
 
-@Component(immediate = true)
-public final class ThothMain
+@Component(
+  immediate = true,
+  configurationPid = "com.io7m.thoth.irc",
+  configurationPolicy = ConfigurationPolicy.REQUIRE)
+public final class ThothComponent
 {
   private static final Logger LOG;
 
   static {
-    LOG = LoggerFactory.getLogger(ThothMain.class);
+    LOG = LoggerFactory.getLogger(ThothComponent.class);
   }
 
   private AtomicReference<ThothIRCConnectionType> connection;
@@ -54,7 +58,7 @@ public final class ThothMain
    * Construct a new IRC component
    */
 
-  public ThothMain()
+  public ThothComponent()
   {
     this.connection = new AtomicReference<>();
   }
@@ -81,7 +85,8 @@ public final class ThothMain
    */
 
   @Activate
-  public void onActivate()
+  public void onActivate(
+    final ThothComponentConfigurationType configuration)
     throws Exception
   {
     LOG.debug("onActivate");
@@ -90,9 +95,11 @@ public final class ThothMain
       try {
         final ThothIRCConnectionConfiguration config =
           ThothIRCConnectionConfiguration.builder()
-            .setAddress(new InetSocketAddress("irc.int.arc7.info", 6669))
-            .setChannel("#lab")
-            .setUser("thoth")
+            .setAddress(new InetSocketAddress(
+              configuration.address(),
+              configuration.port()))
+            .setChannel(configuration.channel())
+            .setUser(configuration.user())
             .build();
 
         final ThothIRCConnectionType c =
