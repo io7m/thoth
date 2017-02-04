@@ -40,20 +40,6 @@ public final class TCSystemUptime extends TCSystemCommand
 
   }
 
-  @Override
-  public String name()
-  {
-    return "uptime";
-  }
-
-  @Override
-  public List<ThothResponse> execute(
-    final List<String> text)
-  {
-    return List.of(ThothResponse.of(
-      uptime(ManagementFactory.getRuntimeMXBean().getUptime())));
-  }
-
   private static String uptime(
     final long millis)
   {
@@ -77,5 +63,19 @@ public final class TCSystemUptime extends TCSystemCommand
     sb.append(seconds);
     sb.append(" seconds");
     return sb.toString();
+  }
+
+  @Override
+  public String name()
+  {
+    return "uptime";
+  }
+
+  @Override
+  public List<ThothResponse> execute(
+    final List<String> text)
+  {
+    return List.of(ThothResponse.of(
+      uptime(ManagementFactory.getRuntimeMXBean().getUptime())));
   }
 }

@@ -42,26 +42,6 @@ public final class TCSystemHeap extends TCSystemCommand
 
   }
 
-  @Override
-  public String name()
-  {
-    return "heap";
-  }
-
-  @Override
-  public List<ThothResponse> execute(
-    final List<String> text)
-  {
-    List<ThothResponse> results = List.empty();
-
-    for (final GarbageCollectorMXBean bean : ManagementFactory.getGarbageCollectorMXBeans()) {
-      results = results.append(ThothResponse.of(gcStats(bean)));
-    }
-
-    results = results.append(ThothResponse.of(TCSystemHeap.heapStats()));
-    return results;
-  }
-
   private static String gcStats(
     final GarbageCollectorMXBean bean)
   {
@@ -99,5 +79,25 @@ public final class TCSystemHeap extends TCSystemCommand
       "heap %.2fmb / %.2fmb",
       Double.valueOf(heap_used_mega),
       Double.valueOf(heap_max_mega));
+  }
+
+  @Override
+  public String name()
+  {
+    return "heap";
+  }
+
+  @Override
+  public List<ThothResponse> execute(
+    final List<String> text)
+  {
+    List<ThothResponse> results = List.empty();
+
+    for (final GarbageCollectorMXBean bean : ManagementFactory.getGarbageCollectorMXBeans()) {
+      results = results.append(ThothResponse.of(gcStats(bean)));
+    }
+
+    results = results.append(ThothResponse.of(TCSystemHeap.heapStats()));
+    return results;
   }
 }
