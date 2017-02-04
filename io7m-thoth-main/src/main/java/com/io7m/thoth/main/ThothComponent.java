@@ -81,6 +81,8 @@ public final class ThothComponent
   /**
    * Activate the bot.
    *
+   * @param configuration The configuration values
+   *
    * @throws Exception On errors
    */
 
