@@ -122,7 +122,9 @@ public final class ThothMain
 
     this.connection.getAndUpdate(conn -> {
       try {
-        conn.close();
+        if (conn != null) {
+          conn.close();
+        }
       } catch (final Exception e) {
         LOG.error("deactivation failed: ", e);
       }
