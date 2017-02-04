@@ -4,6 +4,26 @@
 
   <c:release c:ticket-system="com.github.io7m.thoth">
     <c:date>2017-02-04</c:date>
+    <c:version>0.2.0</c:version>
+    <c:item>
+      <c:date>2017-02-04</c:date>
+      <c:type-code-fix/>
+      <c:summary>Avoid a possible null pointer deference when shutting down the IRC component.</c:summary>
+    </c:item>
+    <c:item>
+      <c:date>2017-02-04</c:date>
+      <c:type-code-fix/>
+      <c:summary>Do not start an interactive shell on startup. This prevents early and unexpected shutdowns when running under process supervision.</c:summary>
+    </c:item>
+    <c:item>
+      <c:date>2017-02-04</c:date>
+      <c:type-code-change/>
+      <c:summary>Switch to a ConfigurationAdmin managed IRC component.</c:summary>
+    </c:item>
+  </c:release>
+
+  <c:release c:ticket-system="com.github.io7m.thoth">
+    <c:date>2017-02-04</c:date>
     <c:version>0.1.0</c:version>
     <c:item>
       <c:date>2017-02-04</c:date>
