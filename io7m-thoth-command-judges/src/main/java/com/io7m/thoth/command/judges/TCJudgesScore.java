@@ -54,10 +54,11 @@ public final class TCJudgesScore extends TCJudgesCommand
     final double judge2 = 10.0 - (Math.random() * 5.0);
     final double judge3 = (Math.random() * 10.0) * Math.random();
     return List.of(ThothResponse.of(String.format(
-      ".o/[%.1f] .o/[%.1f] .o/[%.1f] .o/[%.1f]",
+      ".o/[%.1f] .o/[%.1f] .o/[%.1f] .o/[%.1f] (%.1f)",
       Double.valueOf(judge0),
       Double.valueOf(judge1),
       Double.valueOf(judge2),
-      Double.valueOf(judge3))));
+      Double.valueOf(judge3),
+      Double.valueOf(judge0 + judge1 + judge2 + judge3))));
   }
 }

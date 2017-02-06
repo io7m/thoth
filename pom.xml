@@ -31,6 +31,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <siteReposDirectory>com/io7m/thoth</siteReposDirectory>
     <siteDocumentationDirectory>com/io7m/thoth/io7m-thoth-documentation</siteDocumentationDirectory>
+    <com.io7m.thoth.checkstyle.version>0.2.0</com.io7m.thoth.checkstyle.version>
   </properties>
 
   <licenses>
@@ -300,7 +301,7 @@
             <dependency>
               <groupId>${project.groupId}</groupId>
               <artifactId>io7m-thoth-checkstyle</artifactId>
-              <version>${project.version}</version>
+              <version>${com.io7m.thoth.checkstyle.version}</version>
             </dependency>
           </dependencies>
           <executions>
