@@ -184,7 +184,14 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
         this.runMessage(command_text, e -> event.respond(e.text()));
       }
 
-      this.resolver.listeners().forEach(x -> x.receive(text));
+      final List<ThothResponse> responses =
+        this.resolver.listeners().foldLeft(
+          List.empty(),
+          (results, listener) -> results.appendAll(listener.receive(text)));
+
+      LOG.debug("listener returned {} responses",
+                Integer.valueOf(responses.size()));
+      responses.forEach(r -> event.respondWith(r.text()));
     }
 
     @Override
@@ -194,7 +201,15 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
     {
       final String text = event.getMessage();
       this.runMessage(text, e -> event.respondPrivateMessage(e.text()));
-      this.resolver.listeners().forEach(x -> x.receive(text));
+
+      final List<ThothResponse> responses =
+        this.resolver.listeners().foldLeft(
+        List.empty(),
+        (results, listener) -> results.appendAll(listener.receive(text)));
+
+      LOG.debug("listener returned {} responses",
+                Integer.valueOf(responses.size()));
+      responses.forEach(r -> event.respondPrivateMessage(r.text()));
     }
 
     private void runMessage(
