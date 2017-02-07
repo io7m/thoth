@@ -43,25 +43,6 @@ public final class TCSystemBundles extends TCSystemCommand
 
   }
 
-  /**
-   * Activate the command with the given bundle context.
-   *
-   * @param context The bundle context
-   */
-
-  @Activate
-  public void onActivate(
-    final BundleContext context)
-  {
-    this.bundle_context = context;
-  }
-
-  @Override
-  public String name()
-  {
-    return "bundles";
-  }
-
   private static String state(
     final Bundle bundle)
   {
@@ -83,6 +64,24 @@ public final class TCSystemBundles extends TCSystemCommand
     throw new UnreachableCodeException();
   }
 
+  /**
+   * Activate the command with the given bundle context.
+   *
+   * @param context The bundle context
+   */
+
+  @Activate
+  public void onActivate(
+    final BundleContext context)
+  {
+    this.bundle_context = context;
+  }
+
+  @Override
+  public String name()
+  {
+    return "bundles";
+  }
 
   @Override
   public List<ThothResponse> execute(

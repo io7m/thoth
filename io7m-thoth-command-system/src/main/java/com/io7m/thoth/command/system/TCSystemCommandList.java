@@ -18,11 +18,17 @@ package com.io7m.thoth.command.system;
 
 import com.io7m.jnull.NullCheck;
 import com.io7m.thoth.command.api.ThothCommandType;
-import com.io7m.thoth.command.api.ThothResolverType;
 import com.io7m.thoth.command.api.ThothResponse;
 import javaslang.collection.List;
+import javaslang.collection.SortedSet;
+import javaslang.collection.TreeSet;
+import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
-import org.osgi.service.component.annotations.Reference;
+import org.osgi.util.tracker.ServiceTracker;
+
+import java.util.Objects;
 
 /**
  * A command that displays the available commands in a group.
@@ -31,7 +37,7 @@ import org.osgi.service.component.annotations.Reference;
 @Component(immediate = true, service = ThothCommandType.class)
 public final class TCSystemCommandList extends TCSystemCommand
 {
-  private ThothResolverType resolver;
+  private BundleContext context;
 
   /**
    * Construct a command.
@@ -43,16 +49,16 @@ public final class TCSystemCommandList extends TCSystemCommand
   }
 
   /**
-   * Register a resolver.
+   * Activate the component.
    *
-   * @param in_resolver The resolver
+   * @param in_context The bundle context
    */
 
-  @Reference
-  public void onRegisterResolver(
-    final ThothResolverType in_resolver)
+  @Activate
+  public void onActivate(
+    final BundleContext in_context)
   {
-    this.resolver = NullCheck.notNull(in_resolver, "Resolver");
+    this.context = NullCheck.notNull(in_context, "Context");
   }
 
   @Override
@@ -66,8 +72,30 @@ public final class TCSystemCommandList extends TCSystemCommand
     final List<String> text)
   {
     if (text.size() == 1) {
-      return this.resolver.commandGroupList(text.get(0))
-        .toList().map(ThothResponse::of);
+      final ServiceTracker<ThothCommandType, ThothCommandType> tracker =
+        new ServiceTracker<>(this.context, ThothCommandType.class, null);
+
+      tracker.open();
+
+      try {
+        final ServiceReference<ThothCommandType>[] available =
+          tracker.getServiceReferences();
+
+        SortedSet<String> results = TreeSet.empty();
+        for (int index = 0; index < available.length; ++index) {
+          final ServiceReference<ThothCommandType> ref = available[index];
+          final ThothCommandType command = this.context.getService(ref);
+          if (command != null) {
+            if (Objects.equals(command.group(), text.get(0))) {
+              results = results.add(command.group() + ":" + command.name());
+            }
+          }
+        }
+
+        return results.toList().map(ThothResponse::of);
+      } finally {
+        tracker.close();
+      }
     }
 
     return List.of(ThothResponse.of("usage: " + this.name() + " <group>"));
