@@ -7,7 +7,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.io7m.thoth</groupId>
   <artifactId>io7m-thoth</artifactId>
-  <version>0.2.0</version>
+  <version>1.0.0</version>
 
   <packaging>pom</packaging>
   <name>io7m-thoth</name>
@@ -31,7 +31,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <siteReposDirectory>com/io7m/thoth</siteReposDirectory>
     <siteDocumentationDirectory>com/io7m/thoth/io7m-thoth-documentation</siteDocumentationDirectory>
-    <com.io7m.thoth.checkstyle.version>0.2.0</com.io7m.thoth.checkstyle.version>
+    <com.io7m.thoth.checkstyle.version>[1.0.0, 2.0.0)</com.io7m.thoth.checkstyle.version>
   </properties>
 
   <licenses>
