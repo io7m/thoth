@@ -36,18 +36,18 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-connection</artifactId>
-      <version>${project.version}</version>
+      <artifactId>io7m-thoth-core</artifactId>
+      <version>0.2.0</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-core</artifactId>
-      <version>${project.version}</version>
+      <artifactId>io7m-thoth-connection</artifactId>
+      <version>0.2.1</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
       <artifactId>io7m-thoth-main</artifactId>
-      <version>${project.version}</version>
+      <version>0.2.0</version>
     </dependency>
 
     <dependency>
