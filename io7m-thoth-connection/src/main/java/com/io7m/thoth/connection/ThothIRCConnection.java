@@ -187,7 +187,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
       final List<ThothResponse> responses =
         this.resolver.listeners().foldLeft(
           List.empty(),
-          (results, listener) -> results.appendAll(listener.receive(text)));
+          (results, receiver) -> results.appendAll(receiver.receive(text)));
 
       LOG.debug("listener returned {} responses",
                 Integer.valueOf(responses.size()));
@@ -205,7 +205,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
       final List<ThothResponse> responses =
         this.resolver.listeners().foldLeft(
         List.empty(),
-        (results, listener) -> results.appendAll(listener.receive(text)));
+        (results, receiver) -> results.appendAll(receiver.receive(text)));
 
       LOG.debug("listener returned {} responses",
                 Integer.valueOf(responses.size()));
