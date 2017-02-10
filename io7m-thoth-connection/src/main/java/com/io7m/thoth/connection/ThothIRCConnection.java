@@ -35,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.function.Consumer;
@@ -93,6 +94,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
     cb.setAutoReconnect(true);
     cb.setAutoReconnectAttempts(Integer.MAX_VALUE);
     cb.setMessageDelay(10L);
+    cb.setEncoding(StandardCharsets.UTF_8);
 
     final ThothIRCConnection conn = new ThothIRCConnection(config, resolver);
     cb.addListener(conn.listener);
