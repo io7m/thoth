@@ -18,6 +18,8 @@ package com.io7m.thoth.command.api;
 
 import javaslang.collection.List;
 
+import java.util.UUID;
+
 /**
  * <p>The type of commands.</p>
  *
@@ -47,7 +49,32 @@ public interface ThothCommandType
    * @param text The arguments
    *
    * @return A list of messages with which to respond
+   *
+   * @deprecated Use {@link #executeCommand(ThothCommandParsed)}
    */
 
-  List<ThothResponse> execute(List<String> text);
+  @Deprecated
+  default List<ThothResponse> execute(
+    final List<String> text)
+  {
+    return this.executeCommand(ThothCommandParsed.of(
+      text,
+      "nobody",
+      "nobody",
+      UUID.fromString("1b2abff8-ae28-4b5a-bd6c-491f64a2752c")));
+  }
+
+  /**
+   * Execute the given parsed command.
+   *
+   * @param command The parsed command
+   *
+   * @return A list of messages with which to respond
+   */
+
+  default List<ThothResponse> executeCommand(
+    final ThothCommandParsed command)
+  {
+    return this.execute(command.arguments());
+  }
 }

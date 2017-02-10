@@ -17,6 +17,7 @@
 package com.io7m.thoth.connection;
 
 import com.io7m.jnull.NullCheck;
+import com.io7m.thoth.command.api.ThothCommandParsed;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResolverType;
 import com.io7m.thoth.command.api.ThothResponse;
@@ -35,6 +36,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.function.Consumer;
 import java.util.regex.Pattern;
 
@@ -181,7 +183,13 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
       if (text.startsWith(this.command_prefix)) {
         final String command_text =
           text.substring(this.command_prefix.length()).trim();
-        this.runMessage(command_text, e -> event.respond(e.text()));
+        final User user = event.getUser();
+        this.runMessage(
+          user.getLogin(),
+          user.getNick(),
+          user.getUserId(),
+          command_text,
+          e -> event.respond(e.text()));
       }
 
       final List<ThothResponse> responses =
@@ -189,8 +197,9 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
           List.empty(),
           (results, receiver) -> results.appendAll(receiver.receive(text)));
 
-      LOG.debug("listener returned {} responses",
-                Integer.valueOf(responses.size()));
+      LOG.debug(
+        "listener returned {} responses",
+        Integer.valueOf(responses.size()));
       responses.forEach(r -> event.respondWith(r.text()));
     }
 
@@ -200,19 +209,29 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
       throws Exception
     {
       final String text = event.getMessage();
-      this.runMessage(text, e -> event.respondPrivateMessage(e.text()));
+      final User user = event.getUser();
+      this.runMessage(
+        user.getLogin(),
+        user.getNick(),
+        user.getUserId(),
+        text,
+        e -> event.respondPrivateMessage(e.text()));
 
       final List<ThothResponse> responses =
         this.resolver.listeners().foldLeft(
-        List.empty(),
-        (results, receiver) -> results.appendAll(receiver.receive(text)));
+          List.empty(),
+          (results, receiver) -> results.appendAll(receiver.receive(text)));
 
-      LOG.debug("listener returned {} responses",
-                Integer.valueOf(responses.size()));
+      LOG.debug(
+        "listener returned {} responses",
+        Integer.valueOf(responses.size()));
       responses.forEach(r -> event.respondPrivateMessage(r.text()));
     }
 
     private void runMessage(
+      final String user_name,
+      final String nick_name,
+      final UUID sender_id,
       final String command_text,
       final Consumer<ThothResponse> responder)
     {
@@ -223,7 +242,9 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
         if (command_pieces.size() == 2) {
           final String group = command_pieces.get(0);
           final String name = command_pieces.get(1);
-          this.runCommand(segments, qualified, group, name, responder);
+          final ThothCommandParsed parsed = ThothCommandParsed.of(
+            segments.tail(), user_name, nick_name, sender_id);
+          this.runCommand(parsed, qualified, group, name, responder);
         } else {
           LOG.debug("could not parse command pieces");
         }
@@ -233,7 +254,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
     }
 
     private void runCommand(
-      final List<String> segments,
+      final ThothCommandParsed command_parsed,
       final String qualified,
       final String group,
       final String name,
@@ -244,7 +265,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
         this.resolver.commandFind(group, name);
       if (command.isPresent()) {
         final List<ThothResponse> lines =
-          command.get().execute(segments.tail());
+          command.get().executeCommand(command_parsed);
         lines.forEach(respond);
       } else {
         respond.accept(ThothResponse.of("Unknown command: " + qualified));
