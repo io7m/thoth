@@ -7,16 +7,20 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.thoth</groupId>
-    <artifactId>io7m-thoth</artifactId>
+    <artifactId>com.io7m.thoth</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>io7m-thoth-distribution</artifactId>
+  <artifactId>com.io7m.thoth.distribution</artifactId>
   <version>1.0.0</version>
 
   <packaging>bundle</packaging>
-  <name>io7m-thoth-distribution</name>
+  <name>com.io7m.thoth.distribution</name>
   <description>IRC bot (OSGi aggregation)</description>
   <url>http://io7m.github.io/thoth/</url>
+
+  <properties>
+    <mdep.analyze.skip>true</mdep.analyze.skip>
+  </properties>
 
   <scm>
     <url>${project.parent.scm.url}</url>
@@ -27,27 +31,27 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-command-judges</artifactId>
+      <artifactId>com.io7m.thoth.command.judges</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-command-system</artifactId>
+      <artifactId>com.io7m.thoth.command.system</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-core</artifactId>
+      <artifactId>com.io7m.thoth.core</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-connection</artifactId>
+      <artifactId>com.io7m.thoth.connection</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-main</artifactId>
+      <artifactId>com.io7m.thoth.main</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
 
@@ -164,7 +168,7 @@
     </dependency>
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
   </dependencies>
 

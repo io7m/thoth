@@ -7,14 +7,14 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.thoth</groupId>
-    <artifactId>io7m-thoth</artifactId>
+    <artifactId>com.io7m.thoth</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>io7m-thoth-command-judges</artifactId>
+  <artifactId>com.io7m.thoth.command.judges</artifactId>
   <version>1.0.0</version>
 
   <packaging>bundle</packaging>
-  <name>io7m-thoth-command-judges</name>
+  <name>com.io7m.thoth.command.judges</name>
   <description>IRC bot (Judge commands)</description>
   <url>http://io7m.github.io/thoth/</url>
 
@@ -27,17 +27,13 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-command-api</artifactId>
+      <artifactId>com.io7m.thoth.command.api</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
 
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.io7m.junreachable</groupId>
-      <artifactId>io7m-junreachable-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
     <dependency>
       <groupId>io.javaslang</groupId>
@@ -45,22 +41,7 @@
     </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
-      <artifactId>org.osgi.core</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.osgi</groupId>
       <artifactId>org.osgi.service.component.annotations</artifactId>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-api</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.immutables</groupId>
-      <artifactId>value</artifactId>
       <scope>provided</scope>
     </dependency>
   </dependencies>

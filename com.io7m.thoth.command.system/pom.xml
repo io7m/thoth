@@ -7,15 +7,15 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.thoth</groupId>
-    <artifactId>io7m-thoth</artifactId>
+    <artifactId>com.io7m.thoth</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>io7m-thoth-connection</artifactId>
-  <version>1.1.0</version>
+  <artifactId>com.io7m.thoth.command.system</artifactId>
+  <version>1.0.0</version>
 
   <packaging>bundle</packaging>
-  <name>io7m-thoth-connection</name>
-  <description>IRC bot (Connection)</description>
+  <name>com.io7m.thoth.command.system</name>
+  <description>IRC bot (System commands)</description>
   <url>http://io7m.github.io/thoth/</url>
 
   <scm>
@@ -27,34 +27,31 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-core</artifactId>
-      <version>[1.0.0, 2.0.0)</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-command-api</artifactId>
+      <artifactId>com.io7m.thoth.command.api</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
 
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.pircbotx</groupId>
-      <artifactId>pircbotx</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.immutables</groupId>
-      <artifactId>value</artifactId>
+      <groupId>com.io7m.junreachable</groupId>
+      <artifactId>com.io7m.junreachable.core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.javaslang</groupId>
+      <artifactId>javaslang</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.core</artifactId>
       <scope>provided</scope>
     </dependency>
-
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.service.component.annotations</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -64,6 +61,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
+        <dependencies>
+          <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>com.io7m.thoth.checkstyle</artifactId>
+            <version>${project.parent.version}</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!-- Produce OSGi bundle -->
@@ -74,7 +78,7 @@
         <configuration>
           <instructions>
             <Export-Package>
-              com.io7m.thoth.connection
+              com.io7m.thoth.command.system
             </Export-Package>
           </instructions>
         </configuration>

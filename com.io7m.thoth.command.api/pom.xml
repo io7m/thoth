@@ -7,16 +7,20 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.thoth</groupId>
-    <artifactId>io7m-thoth</artifactId>
+    <artifactId>com.io7m.thoth</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>io7m-thoth-main</artifactId>
-  <version>1.0.0</version>
+  <artifactId>com.io7m.thoth.command.api</artifactId>
+  <version>1.1.0</version>
 
   <packaging>bundle</packaging>
-  <name>io7m-thoth-main</name>
-  <description>IRC bot (Main)</description>
+  <name>com.io7m.thoth.command.api</name>
+  <description>IRC bot (Command API)</description>
   <url>http://io7m.github.io/thoth/</url>
+
+  <properties>
+    <io7m.api.previousVersion>1.1.0</io7m.api.previousVersion>
+  </properties>
 
   <scm>
     <url>${project.parent.scm.url}</url>
@@ -27,39 +31,32 @@
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-core</artifactId>
-      <version>[1.0.0, 2.0.0)</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-connection</artifactId>
-      <version>[1.0.0, 2.0.0)</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
-      <artifactId>io7m-thoth-command-api</artifactId>
+      <artifactId>com.io7m.thoth.core</artifactId>
       <version>[1.0.0, 2.0.0)</version>
     </dependency>
 
-    <dependency>
-      <groupId>ch.qos.logback</groupId>
-      <artifactId>logback-classic</artifactId>
-    </dependency>
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
-
+    <dependency>
+      <groupId>io.javaslang</groupId>
+      <artifactId>javaslang</artifactId>
+    </dependency>
     <dependency>
       <groupId>org.osgi</groupId>
       <artifactId>org.osgi.service.component.annotations</artifactId>
       <scope>provided</scope>
     </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
 
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
+      <groupId>org.immutables</groupId>
+      <artifactId>value</artifactId>
+      <scope>provided</scope>
     </dependency>
   </dependencies>
 
@@ -79,7 +76,7 @@
         <configuration>
           <instructions>
             <Export-Package>
-              com.io7m.thoth.main
+              com.io7m.thoth.command.api
             </Export-Package>
           </instructions>
         </configuration>

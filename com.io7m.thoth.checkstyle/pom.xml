@@ -7,14 +7,14 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.io7m.thoth</groupId>
-    <artifactId>io7m-thoth</artifactId>
+    <artifactId>com.io7m.thoth</artifactId>
     <version>1.0.0</version>
   </parent>
-  <artifactId>io7m-thoth-checkstyle</artifactId>
+  <artifactId>com.io7m.thoth.checkstyle</artifactId>
   <version>1.0.0</version>
 
   <packaging>jar</packaging>
-  <name>io7m-thoth-checkstyle</name>
+  <name>com.io7m.thoth.checkstyle</name>
   <description>IRC bot (Checkstyle policy)</description>
   <url>http://io7m.github.io/thoth/</url>
 
@@ -27,7 +27,7 @@
   <dependencies>
     <dependency>
       <groupId>com.io7m.jnull</groupId>
-      <artifactId>io7m-jnull-core</artifactId>
+      <artifactId>com.io7m.jnull.core</artifactId>
     </dependency>
   </dependencies>
 
