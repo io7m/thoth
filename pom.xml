@@ -264,6 +264,17 @@
   <build>
     <pluginManagement>
       <plugins>
+        <!--
+        Bnd Export Maven Plugin
+
+        https://github.com/bndtools/bnd/blob/master/maven/bnd-export-maven-plugin/README.md
+        -->
+        <plugin>
+          <groupId>biz.aQute.bnd</groupId>
+          <artifactId>bnd-export-maven-plugin</artifactId>
+          <version>3.3.0</version>
+        </plugin>
+
         <!-- Require JDK >= 1.8 -->
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
