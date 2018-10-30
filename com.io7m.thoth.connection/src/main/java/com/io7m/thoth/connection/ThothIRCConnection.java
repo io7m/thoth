@@ -16,12 +16,12 @@
 
 package com.io7m.thoth.connection;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.thoth.command.api.ThothCommandParsed;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResolverType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.List;
+import io.vavr.collection.List;
 import org.pircbotx.Configuration;
 import org.pircbotx.PircBotX;
 import org.pircbotx.User;
@@ -78,8 +78,8 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
     final ThothIRCConnectionConfiguration config,
     final ThothResolverType resolver)
   {
-    NullCheck.notNull(config, "Config");
-    NullCheck.notNull(resolver, "Resolver");
+    Objects.requireNonNull(config, "Config");
+    Objects.requireNonNull(resolver, "Resolver");
 
     final UtilSSLSocketFactory tls_factory = new UtilSSLSocketFactory();
     tls_factory.trustAllCertificates();
@@ -124,7 +124,7 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
   private void setBot(
     final PircBotX in_bot)
   {
-    this.bot = NullCheck.notNull(in_bot, "Bot");
+    this.bot = Objects.requireNonNull(in_bot, "Bot");
     this.listener.setBot(in_bot);
   }
 
@@ -159,21 +159,21 @@ public final class ThothIRCConnection implements ThothIRCConnectionType
       final ThothIRCConnectionConfiguration in_config,
       final ThothResolverType in_resolver)
     {
-      this.connection_config = NullCheck.notNull(in_config, "Config");
-      this.resolver = NullCheck.notNull(in_resolver, "Resolver");
+      this.connection_config = Objects.requireNonNull(in_config, "Config");
+      this.resolver = Objects.requireNonNull(in_resolver, "Resolver");
       this.command_prefix = this.connection_config.user() + ": ";
     }
 
     private void setConfiguration(
       final Configuration in_config)
     {
-      this.configuration = NullCheck.notNull(in_config, "Configuration");
+      this.configuration = Objects.requireNonNull(in_config, "Configuration");
     }
 
     private void setBot(
       final PircBotX in_bot)
     {
-      this.bot = NullCheck.notNull(in_bot, "Bot");
+      this.bot = Objects.requireNonNull(in_bot, "Bot");
     }
 
     @Override

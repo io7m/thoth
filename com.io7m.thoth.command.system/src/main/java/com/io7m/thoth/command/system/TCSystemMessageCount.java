@@ -19,7 +19,7 @@ package com.io7m.thoth.command.system;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothListenerType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.List;
+import io.vavr.collection.List;
 import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Component;
 

@@ -18,7 +18,7 @@ package com.io7m.thoth.command.judges;
 
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.List;
+import io.vavr.collection.List;
 import org.osgi.service.component.annotations.Component;
 
 /**

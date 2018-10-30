@@ -18,6 +18,5 @@
  * System commands.
  */
 
-@com.io7m.jnull.NonNullByDefault
 package com.io7m.thoth.command.system;
 

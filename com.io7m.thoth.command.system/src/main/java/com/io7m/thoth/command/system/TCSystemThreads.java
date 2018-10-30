@@ -18,9 +18,9 @@ package com.io7m.thoth.command.system;
 
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.HashSet;
-import javaslang.collection.List;
-import javaslang.collection.SortedMap;
+import io.vavr.collection.HashSet;
+import io.vavr.collection.List;
+import io.vavr.collection.SortedMap;
 import org.osgi.service.component.annotations.Component;
 
 import java.util.Set;

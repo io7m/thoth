@@ -18,5 +18,5 @@
  * Distribution.
  */
 
-@com.io7m.jnull.NonNullByDefault package com.io7m.thoth.distribution;
+package com.io7m.thoth.distribution;
 

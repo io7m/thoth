@@ -16,11 +16,11 @@
 
 package com.io7m.thoth.command.api;
 
-import javaslang.collection.List;
-import javaslang.collection.SortedMap;
-import javaslang.collection.SortedSet;
-import javaslang.collection.TreeMap;
-import javaslang.collection.TreeSet;
+import io.vavr.collection.List;
+import io.vavr.collection.SortedMap;
+import io.vavr.collection.SortedSet;
+import io.vavr.collection.TreeMap;
+import io.vavr.collection.TreeSet;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 import org.osgi.service.component.annotations.ReferenceCardinality;

@@ -16,8 +16,8 @@
 
 package com.io7m.thoth.command.api;
 
-import javaslang.collection.List;
-import javaslang.collection.SortedSet;
+import io.vavr.collection.List;
+import io.vavr.collection.SortedSet;
 
 import java.util.Optional;
 

@@ -16,7 +16,7 @@
 
 package com.io7m.thoth.connection;
 
-import com.io7m.thoth.core.ThothImmutableStyleType;
+import com.io7m.immutables.styles.ImmutablesStyleType;
 import org.immutables.value.Value;
 
 import java.net.InetSocketAddress;
@@ -25,7 +25,7 @@ import java.net.InetSocketAddress;
  * The type of connection configurations.
  */
 
-@ThothImmutableStyleType
+@ImmutablesStyleType
 @Value.Immutable
 public interface ThothIRCConnectionConfigurationType
 {

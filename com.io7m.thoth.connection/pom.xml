@@ -5,15 +5,17 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>com.io7m.thoth</groupId>
     <artifactId>com.io7m.thoth</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
   </parent>
-  <artifactId>com.io7m.thoth.connection</artifactId>
-  <version>1.1.0</version>
 
-  <packaging>bundle</packaging>
+  <artifactId>com.io7m.thoth.connection</artifactId>
+  <version>2.0.0</version>
+
+  <packaging>jar</packaging>
   <name>com.io7m.thoth.connection</name>
   <description>IRC bot (Connection)</description>
   <url>http://io7m.github.io/thoth/</url>
@@ -22,27 +24,11 @@
     <io7m.api.previousVersion>1.1.0</io7m.api.previousVersion>
   </properties>
 
-  <scm>
-    <url>${project.parent.scm.url}</url>
-    <connection>${project.parent.scm.connection}</connection>
-    <developerConnection>${project.parent.scm.developerConnection}</developerConnection>
-  </scm>
-
   <dependencies>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>com.io7m.thoth.core</artifactId>
-      <version>[1.0.0, 2.0.0)</version>
-    </dependency>
-    <dependency>
-      <groupId>${project.groupId}</groupId>
       <artifactId>com.io7m.thoth.command.api</artifactId>
-      <version>[1.0.0, 2.0.0)</version>
-    </dependency>
-
-    <dependency>
-      <groupId>com.io7m.jnull</groupId>
-      <artifactId>com.io7m.jnull.core</artifactId>
+      <version>2.0.0</version>
     </dependency>
 
     <dependency>
@@ -58,12 +44,23 @@
       <artifactId>guava</artifactId>
     </dependency>
     <dependency>
-      <groupId>io.javaslang</groupId>
-      <artifactId>javaslang</artifactId>
+      <groupId>io.vavr</groupId>
+      <artifactId>vavr</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.io7m.immutables.style</groupId>
+      <artifactId>com.io7m.immutables.style</artifactId>
+      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.immutables</groupId>
       <artifactId>value</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.osgi</groupId>
+      <artifactId>org.osgi.annotation.bundle</artifactId>
       <scope>provided</scope>
     </dependency>
   </dependencies>
@@ -74,20 +71,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-      </plugin>
-
-      <!-- Produce OSGi bundle -->
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Export-Package>
-              com.io7m.thoth.connection
-            </Export-Package>
-          </instructions>
-        </configuration>
       </plugin>
     </plugins>
   </build>

@@ -16,7 +16,7 @@
 
 package com.io7m.thoth.command.api;
 
-import com.io7m.thoth.core.ThothImmutableStyleType;
+import com.io7m.immutables.styles.ImmutablesStyleType;
 import org.immutables.value.Value;
 
 /**
@@ -24,7 +24,7 @@ import org.immutables.value.Value;
  */
 
 @Value.Immutable
-@ThothImmutableStyleType
+@ImmutablesStyleType
 public interface ThothResponseType
 {
   /**

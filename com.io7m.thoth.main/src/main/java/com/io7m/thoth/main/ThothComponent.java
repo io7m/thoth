@@ -16,7 +16,7 @@
 
 package com.io7m.thoth.main;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.thoth.command.api.ThothResolverType;
 import com.io7m.thoth.connection.ThothIRCConnection;
 import com.io7m.thoth.connection.ThothIRCConnectionConfiguration;
@@ -75,7 +75,7 @@ public final class ThothComponent
   public void onRegisterResolver(
     final ThothResolverType in_resolver)
   {
-    this.resolver = NullCheck.notNull(in_resolver, "Resolver");
+    this.resolver = Objects.requireNonNull(in_resolver, "Resolver");
   }
 
   /**

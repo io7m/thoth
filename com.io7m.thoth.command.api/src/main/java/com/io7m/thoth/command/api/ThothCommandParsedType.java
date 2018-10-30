@@ -16,8 +16,8 @@
 
 package com.io7m.thoth.command.api;
 
-import com.io7m.thoth.core.ThothImmutableStyleType;
-import javaslang.collection.List;
+import com.io7m.immutables.styles.ImmutablesStyleType;
+import io.vavr.collection.List;
 import org.immutables.value.Value;
 
 import java.util.UUID;
@@ -27,7 +27,7 @@ import java.util.UUID;
  */
 
 @Value.Immutable
-@ThothImmutableStyleType
+@ImmutablesStyleType
 public interface ThothCommandParsedType
 {
   /**

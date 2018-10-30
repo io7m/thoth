@@ -16,12 +16,12 @@
 
 package com.io7m.thoth.command.system;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.List;
-import javaslang.collection.SortedSet;
-import javaslang.collection.TreeSet;
+import io.vavr.collection.List;
+import io.vavr.collection.SortedSet;
+import io.vavr.collection.TreeSet;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
 import org.osgi.service.component.annotations.Activate;
@@ -56,7 +56,7 @@ public final class TCSystemCommandGroups extends TCSystemCommand
   public void onActivate(
     final BundleContext in_context)
   {
-    this.context = NullCheck.notNull(in_context, "Context");
+    this.context = Objects.requireNonNull(in_context, "Context");
   }
 
   @Override

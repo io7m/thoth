@@ -16,7 +16,7 @@
 
 package com.io7m.thoth.command.api;
 
-import javaslang.collection.List;
+import io.vavr.collection.List;
 
 import java.util.UUID;
 

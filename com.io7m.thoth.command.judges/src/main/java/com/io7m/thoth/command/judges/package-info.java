@@ -18,5 +18,5 @@
  * Judges commands.
  */
 
-@com.io7m.jnull.NonNullByDefault package com.io7m.thoth.command.judges;
+package com.io7m.thoth.command.judges;
 

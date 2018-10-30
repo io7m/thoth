@@ -16,11 +16,11 @@
 
 package com.io7m.thoth.command.system;
 
-import com.io7m.jnull.NullCheck;
+import java.util.Objects;
 import com.io7m.thoth.command.api.ThothCommandType;
 import com.io7m.thoth.command.api.ThothResolverType;
 import com.io7m.thoth.command.api.ThothResponse;
-import javaslang.collection.List;
+import io.vavr.collection.List;
 import org.osgi.service.component.annotations.Component;
 import org.osgi.service.component.annotations.Reference;
 
@@ -52,7 +52,7 @@ public final class TCSystemListenerList extends TCSystemCommand
   public void onRegisterResolver(
     final ThothResolverType in_resolver)
   {
-    this.resolver = NullCheck.notNull(in_resolver, "Resolver");
+    this.resolver = Objects.requireNonNull(in_resolver, "Resolver");
   }
 
   @Override

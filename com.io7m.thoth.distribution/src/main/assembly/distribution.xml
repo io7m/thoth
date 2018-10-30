@@ -32,11 +32,15 @@
   <moduleSets>
     <moduleSet>
       <useAllReactorProjects>true</useAllReactorProjects>
-      <excludes>
-        <exclude>${project.groupId}:com.io7m.thoth.checkstyle</exclude>
-        <exclude>${project.groupId}:com.io7m.thoth.documentation</exclude>
-        <exclude>${project.groupId}:com.io7m.thoth.distribution</exclude>
-      </excludes>
+
+      <includes>
+        <include>${project.groupId}:com.io7m.thoth.command.api</include>
+        <include>${project.groupId}:com.io7m.thoth.command.judges</include>
+        <include>${project.groupId}:com.io7m.thoth.command.system</include>
+        <include>${project.groupId}:com.io7m.thoth.connection</include>
+        <include>${project.groupId}:com.io7m.thoth.main</include>
+      </includes>
+
       <binaries>
         <includeDependencies>false</includeDependencies>
         <outputDirectory>lib</outputDirectory>
@@ -50,5 +54,21 @@
       </binaries>
     </moduleSet>
   </moduleSets>
+
+  <!--
+  <dependencySets>
+    <dependencySet>
+      <useTransitiveDependencies>true</useTransitiveDependencies>
+      <useProjectArtifact>false</useProjectArtifact>
+
+      <includes>
+        <include>io.vavr:vavr</include>
+      </includes>
+
+      <outputDirectory>lib</outputDirectory>
+      <unpack>false</unpack>
+    </dependencySet>
+  </dependencySets>
+  -->
 
 </assembly>
